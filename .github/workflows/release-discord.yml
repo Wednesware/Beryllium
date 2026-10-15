@@ -1,0 +1,29 @@
+name: Discord Release Notifier
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord message
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          URL: ${{ github.event.release.html_url }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"embeds\": [{
+              \"title\": \"🚀 Beryllium $RELEASE_NAME out now!\",
+              \"description\": \"\",
+              \"url\": \"$URL\",
+              \"color\": 5814783
+            }]
+          }" \
+          $WEBHOOK
