@@ -358,8 +358,7 @@ The admin command console supports these commands:
 | `groups` | List groups |
 | `clients [G]` | List clients, optionally within a group |
 | `present global SCENE` | Change the default scene |
-| `present G SCENE` | Present a scene to a group |
-| `present G:C SCENE` | Present a scene to a client |
+| `present G[:C] SCENE` | Present a scene to a client or group |
 | `present G[:C] inherit` | Clear a client/group override |
 | `pause G[:C] [reason]` | Pause a client or group |
 | `resume G[:C]` | Resume a client or group |
